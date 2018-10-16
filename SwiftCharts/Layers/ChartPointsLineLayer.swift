@@ -91,7 +91,7 @@ open class ChartPointsLineLayer<T: ChartPoint>: ChartPointsLayer<T> {
     
     fileprivate var isInTransform = false
     
-    public init(xAxis: ChartAxis, yAxis: ChartAxis, lineModels: [ChartLineModel<T>], pathGenerator: ChartLinesViewPathGenerator = StraightLinePathGenerator(), displayDelay: Float = 0, useView: Bool = true, delayInit: Bool = false) {
+    public init(xAxis: ChartAxis, yAxis: ChartAxis, lineModels: [ChartLineModel<T>], pathGenerator: ChartLinesViewPathGenerator = StraightLinePathGenerator(), displayDelay: Float = 0, useView: Bool = true, delayInit: Bool = false, tapSettings: ChartPointsTapSettings<T>? = nil) {
         self.lineModels = lineModels
         self.pathGenerator = pathGenerator
         self.useView = useView
@@ -99,7 +99,7 @@ open class ChartPointsLineLayer<T: ChartPoint>: ChartPointsLayer<T> {
         
         let chartPoints: [T] = lineModels.flatMap{$0.chartPoints}
         
-        super.init(xAxis: xAxis, yAxis: yAxis, chartPoints: chartPoints, displayDelay: displayDelay)
+        super.init(xAxis: xAxis, yAxis: yAxis, chartPoints: chartPoints, displayDelay: displayDelay, tapSettings: tapSettings)
     }
     
     fileprivate func toScreenLine(lineModel: ChartLineModel<T>, chart: Chart) -> ScreenLine<T> {
